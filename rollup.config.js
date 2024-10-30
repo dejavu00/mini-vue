@@ -3,6 +3,7 @@ import sourceMaps from "rollup-plugin-sourcemaps";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import replace from "@rollup/plugin-replace";
+import pkg from './package.json'
 
 export default {
   input:"./packages/vue/src/index.ts",
@@ -20,13 +21,13 @@ export default {
   output: [
     {
       format: "cjs",
-      file: "./packages/vue/dist/mini-vue.cjs.js",
+      file: pkg.main,
       sourcemap: true,
     },
     {
       name: "vue",
       format: "es",
-      file: "./packages/vue/dist/mini-vue.esm-bundler.js",
+      file: pkg.module,
       sourcemap: true,
     },
   ],

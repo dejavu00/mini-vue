@@ -2,7 +2,7 @@ import { ShapeFlags } from "@mini-vue/shared";
 
 export { createVNode as createElementVNode }
 
-export const createVNode = function (
+export const createVNode = function(
   type: any,
   props?: any,
   children?: string | Array<any>
@@ -20,7 +20,7 @@ export const createVNode = function (
     type,
     props: props || {},
     children,
-    shapeFlag: getShapeFlag(type),
+    shapeFlag: getShapeFlag(type), // string => ELEMENT 0001, object => STATEFUL_COMPONENT 0100
   };
 
   // 基于 children 再次设置 shapeFlag

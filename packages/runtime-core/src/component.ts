@@ -4,6 +4,7 @@ import { emit } from "./componentEmits";
 import { PublicInstanceProxyHandlers } from "./componentPublicInstance";
 import { proxyRefs, shallowReadonly } from "@mini-vue/reactivity";
 export function createComponentInstance(vnode, parent) {
+  console.log('createComponentInstance: ', parent);
   const instance = {
     type: vnode.type,
     vnode,
@@ -17,7 +18,7 @@ export function createComponentInstance(vnode, parent) {
     slots: {}, // 存放插槽的数据
     ctx: {}, // context 对象
     setupState: {}, // 存储 setup 的返回值
-    emit: () => {},
+    emit: () => { },
   };
 
   // 在 prod 坏境下的 ctx 只是下面简单的结构
@@ -91,7 +92,7 @@ function createSetupContext(instance) {
     attrs: instance.attrs,
     slots: instance.slots,
     emit: instance.emit,
-    expose: () => {}, // TODO 实现 expose 函数逻辑
+    expose: () => { }, // TODO 实现 expose 函数逻辑
   };
 }
 

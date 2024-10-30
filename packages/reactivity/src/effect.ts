@@ -67,6 +67,9 @@ function cleanupEffect(effect) {
   effect.deps.length = 0;
 }
 
+
+// TODO: 执行effect方法，创建ReactiveEffect对象，将参数中的回调函数fn主动触发一次，并且赋值给activeEffect
+// TODO: 执行函数fn后，会触发内部中对象的get方法，搜集相关依赖
 export function effect(fn, options = {}) {
   const _effect = new ReactiveEffect(fn);
 
@@ -97,7 +100,7 @@ export function track(target, type, key) {
   if (!depsMap) {
     // 初始化 depsMap 的逻辑
     depsMap = new Map();
-    targetMap.set(target, depsMap);
+    targetMap.set(target, depsMap); 
   }
 
   let dep = depsMap.get(key);

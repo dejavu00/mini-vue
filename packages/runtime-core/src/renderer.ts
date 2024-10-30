@@ -42,11 +42,13 @@ export function createRenderer(options) {
         processFragment(n1, n2, container);
         break;
       default:
-        // 这里就基于 shapeFlag 来处理
+        // 纯文本 h('div', {}, xxx) 的情况
         if (shapeFlag & ShapeFlags.ELEMENT) {
           console.log("处理 element");
           processElement(n1, n2, container, anchor, parentComponent);
         } else if (shapeFlag & ShapeFlags.STATEFUL_COMPONENT) {
+          // type是 对象
+          // 纯文本 h({ setup: (){}}}, {}, xxx) 的情况
           console.log("处理 component");
           processComponent(n1, n2, container, parentComponent);
         }
@@ -165,9 +167,9 @@ export function createRenderer(options) {
         mountChildren(c2, container);
       } else {
         // array diff array
-      // 如果之前是 array_children
-      // 现在还是 array_children 的话
-      // 那么我们就需要对比两个 children 啦
+        // 如果之前是 array_children
+        // 现在还是 array_children 的话
+        // 那么我们就需要对比两个 children 啦
         patchKeyedChildren(c1, c2, container, parentComponent, anchor);
       }
 
